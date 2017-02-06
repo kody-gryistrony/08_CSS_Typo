@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,900');
+/*tag importujący z biblioteki zewnętrznej*/
+
+/*tutaj deklarujemy fonty z lokalnej biblioteki. Każda deklaracja @font-face musi mieć swój src (najlepiej ścieżkę WZGLĘDNĄ).
+url może być tak dużo jak wiele różnych formatów chcemy załączyć.
+Takie gotowe listy wpuszcza nam np fontsquirrel*/
+@font-face {
+    font-family: 'bitstream_vera';
+    src: url('fonts/veramono-bold-webfont.woff2') format('woff2'),
+         url('fonts/veramono-bold-webfont.woff') format('woff'),
+         url('fonts/veramono-bold-webfont.tff') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+/*w przeciwieństwie do tego, co wypuszcza nam fontsquirrel my chcemy mieć wszystkie warianty fontu pod jedną nazwą i operować jego font-weight czy font style dla boldów i italików.
+W tym celu deklarujemy sobie kilka font-face (jeden fontface = jeden src), ale font-family nazywamy tak samo, a zmieniamy tylko parametry, dla jakich działa nasz src, np: font bold ładuje się tylko dla zadeklarowanego font-weight: bold*/
+@font-face {
+    font-family: 'bitstream_vera';
+
+    src: url('fonts/veramono-italic-webfont.woff2') format('woff2'),
+         url('fonts/veramono-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'bitstream_vera';
+    src: url('fonts/veramono-webfont.woff2') format('woff2'),
+         url('fonts/veramono-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/*staramy się operować na emach, więc tylko w body podajemy font-size w pikselach*/
+body{
+	max-width: 1000px;
+	margin: 5% auto;
+	font-size: 10px;
+	font-family: 'Poppins', sans-serif;
+}
+nav{
+	font-size: 2.4em;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 600; /*tutaj korzystamy z fontu z biblioteki google, a tam mieliśmy wypisane opcje grubości 400 i 900 – jeśli podamy tutaj 600, to prawdopodobnie będzie to automatycznie pogrubiony regular*/
+}
+ul{
+	list-style-type: none;
+}
+section{
+	font-family: 'bitstream_vera', Helvetica, Arial, sans-serif;
+/*	poprawny fallback! patrz: pdf */
+	font-size: 1.5em;
+	margin: 5em 0;
+}
+b {
+	font-weight: bold;
+} /*w tym konkretnym przypadku ten tag nie ma sensu, b zawsze jest bold. Zauważ jednak przez to, że jeśli mamy zadeklarowaną font-face tak jak mamy, to dla domyślnych styli przeglądarki, wszędzie gdzie jest domyślnie bold, przeglądarka nie będzie autopogrubiać fontu, ale stosować nasz wgrany font bold. MAGIC*/
+span.names{
+	font-weight: bold;
+}
+span.highlights{
+	font-style: italic;
+}
+span.sup{
+	vertical-align: top;
+	font-size: 50%;
+	line-height: inherit;
+	font-variant-position: super;
+	/*to się robi po to, że niektóre fonty mają swoje wersje glifów na indeksy*/
+}
+a{
+	text-decoration: none;
+	background: linear-gradient(gray, gray) no-repeat;
+	background-size: 100% 1px;
+	background-position: 0px 1.05em;
+
+	/*bardziej kontrolowane i bajeranckie podkreślenia:
+	1. Wyłączamy domyślny underline
+	2. O background linear-gradient będziemy jeszcze mówić, w każdym razie tylko w ten sposób możemy dać tło w jakimś kolorze o wysokości 1px;
+	3. Pozycję tła dajemy na 1.05em czyli 1em = wysokość tekstu + .05em przesunięcia tego tła poniżej tekstu*/
+}
+h1{
+	text-shadow: 1px 1px 1px hsl(0, 0%, 85%),
+				2px 2px 1px hsl(0, 0%, 75%),
+				3px 3px 1px black;
+	/*MAGIC!!!!
+	Pamiętaj że w text-shadow pierwsze dwie wartości są obowiązkowe, to znaczy przesunięcie "od lewej" i "od góry". Można tutaj dawać różne jednostki i takich zestawów deklaracji może być mnogość */
+}
